@@ -25,23 +25,24 @@ $(document).ready(function () {
 			rate: rate
 		});
 
-		newEntry();
 	});
 
-	function newEntry() {
+	database.ref().on("child_added", function(snapshot){
+		$("#table-body").empty();
+		var sv = snapshot.val();
 
-		var newRow = $("<tr>");
-		newRow.attr("class","row");
+		var table = $("#table-body");
+		var newRow = table.insertRow(0)
 
 		var nameData = $("<td>");
-		nameData.html(name);
+		nameData.html(sv.name);
 		var roleData = $("<td>");
-		roleData.html(role);
+		roleData.html(sv.role);
 		var startData = $("<td>");
-		startData.html(start);
+		startData.html(sv.start);
 		var rateData = $("<td>");
-		rateData.html(rate);
+		rateData.html(sv.rate);
 
-
-	}
+		$("#table-body").append(newRow);
+	})
 })
