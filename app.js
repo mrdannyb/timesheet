@@ -28,20 +28,37 @@ $(document).ready(function () {
 	});
 
 	database.ref().on("child_added", function(snapshot){
-		$("#table-body").empty();
+		
 		var sv = snapshot.val();
 
-		var table = $("#table-body");
-		var newRow = table.insertRow(0)
+		var newRow = $("<tr>");
+		var monthsWorked = 10;
+		var earnedSoFar = monthsWorked * sv.rate;
 
 		var nameData = $("<td>");
 		nameData.html(sv.name);
+		newRow.append(nameData);
+
 		var roleData = $("<td>");
 		roleData.html(sv.role);
+		newRow.append(roleData);
+
 		var startData = $("<td>");
 		startData.html(sv.start);
+		newRow.append(startData);
+
+		var monthsWorkedData = $("<td>");
+		monthsWorkedData.html(monthsWorked);
+		newRow.append(monthsWorkedData);
+
 		var rateData = $("<td>");
 		rateData.html(sv.rate);
+		newRow.append(rateData);
+
+		var earnedSoFarData = $("<td>");
+		earnedSoFarData.html(earnedSoFar);
+		newRow.append(earnedSoFarData);
+
 
 		$("#table-body").append(newRow);
 	})
