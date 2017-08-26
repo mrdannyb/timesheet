@@ -31,7 +31,10 @@ $(document).ready(function () {
 		
 		var sv = snapshot.val();
 
+		var id = snapshot.key;		
+
 		var newRow = $("<tr>");
+		newRow.attr("value", id);
 		var monthsWorked = 10;
 		var earnedSoFar = monthsWorked * sv.rate;
 
@@ -59,7 +62,15 @@ $(document).ready(function () {
 		earnedSoFarData.html(earnedSoFar);
 		newRow.append(earnedSoFarData);
 
+		var deleteButton = $("<button>");
+		deleteButton.attr("class", "deleteButton");
+		deleteButton.html("X");
+		deleteButton.attr("value", id);
 
 		$("#table-body").append(newRow);
+	})
+
+	$(document).on("click", ".deleteButton", function(){
+		
 	})
 })
